@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirosław Chojnacki | DevOps / Platform Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap&subset=latin-ext" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #0b1224;
+      --bg-2: #0f172a;
+      --card: rgba(15, 23, 42, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #f97316;
+      --accent-2: #22c55e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Space Grotesk', 'Segoe UI', Tahoma, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.12), transparent 30%),
+                  radial-gradient(circle at 80% 0%, rgba(249, 115, 22, 0.14), transparent 25%),
+                  linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 32px 20px 48px;
+    }
+
+    .grid-lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(circle at 50% 20%, rgba(0, 0, 0, 0.35), transparent 60%);
+      opacity: 0.5;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 720px;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      background: rgba(249, 115, 22, 0.12);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, #f97316, #f59e0b);
+      color: #0f172a;
+      border: none;
+      box-shadow: 0 14px 40px rgba(249, 115, 22, 0.35);
+    }
+
+    .button.secondary:hover,
+    .button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .section p.lead {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(249, 115, 22, 0.35);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #f8fafc;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .timeline-item strong {
+      color: var(--accent);
+    }
+
+    .work-points {
+      margin-top: 8px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .work-points li {
+      margin: 4px 0;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 28px;
+    }
+
+    @media (max-width: 720px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+      .section, .hero {
+        padding: 22px 20px;
+      }
+      .cta-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-lines" aria-hidden="true"></div>
+  <main>
+    <section class="hero">
+      <div class="tagline">DevOps / Platform Engineer</div>
+      <h1>Mirosław Chojnacki</h1>
+      <p>DevOps engineer with a background in technical support and system administration, experienced in maintaining production infrastructure and supporting software delivery pipelines. Focused on reliability, troubleshooting, and operational ownership across Linux environments, with active contribution to architecture, CI/CD, monitoring, and incident response.</p>
+      <div class="cta-row">
+        <a class="button primary" href="https://www.linkedin.com/in/chojnacki-miroslaw/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <a class="button secondary" href="https://github.com/nisunnymo" target="_blank" rel="noopener">GitHub Profile</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Profile Focus</h2>
+      <p class="lead">Comfortable across development and operations, contributing to architecture, CI/CD, monitoring, infrastructure provisioning, and incident response.</p>
+      <div class="skill-grid">
+        <div class="card">
+          <h3>Linux Operations</h3>
+          <p class="lead">Production support and lifecycle management for Debian-based systems.</p>
+          <div class="chips">
+            <span class="chip">Debian</span>
+            <span class="chip">Production environments</span>
+            <span class="chip">Troubleshooting</span>
+            <span class="chip">Incident response</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Networking & Delivery</h3>
+          <p class="lead">Service connectivity, reverse proxy, firewall, and load balancing operations.</p>
+          <div class="chips">
+            <span class="chip">NGINX</span>
+            <span class="chip">HAProxy</span>
+            <span class="chip">WireGuard</span>
+            <span class="chip">Firewall</span>
+            <span class="chip">VPN</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Databases</h3>
+          <p class="lead">Data platform reliability, backups, replication, and sharding support.</p>
+          <div class="chips">
+            <span class="chip">MariaDB</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">Replication</span>
+            <span class="chip">Replica sets</span>
+            <span class="chip">Sharding</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Languages & Automation</h3>
+          <p class="lead">Automation and provisioning workflows for environments and releases.</p>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">C/C++</span>
+            <span class="chip">Ansible</span>
+            <span class="chip">Rundeck</span>
+            <span class="chip">GitLab CI/CD</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Application Runtime Operations</h3>
+          <p class="lead">Operating and supporting lifecycle of enterprise Java application services and middleware.</p>
+          <div class="chips">
+            <span class="chip">Java-based services</span>
+            <span class="chip">GlassFish</span>
+            <span class="chip">Payara</span>
+            <span class="chip">ActiveMQ</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Observability</h3>
+          <p class="lead">Monitoring, logging, and alerting for production operations.</p>
+          <div class="chips">
+            <span class="chip">Prometheus</span>
+            <span class="chip">Grafana</span>
+            <span class="chip">Loki</span>
+            <span class="chip">ELK</span>
+            <span class="chip">Zabbix</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Infrastructure Platforms</h3>
+          <p class="lead">Virtualization, container platforms, and hosted infrastructure operations.</p>
+          <div class="chips">
+            <span class="chip">Proxmox</span>
+            <span class="chip">Docker / Swarm</span>
+            <span class="chip">Kubernetes basics</span>
+            <span class="chip">AWS/GCP/OCI basics</span>
+            <span class="chip">Backups</span>
+            <span class="chip">Bare metal</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Storage & Filesystems</h3>
+          <p class="lead">Storage reliability and filesystem operations for hosted infrastructure.</p>
+          <div class="chips">
+            <span class="chip">ZFS</span>
+            <span class="chip">CephFS</span>
+            <span class="chip">GlusterFS</span>
+            <span class="chip">S3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Work Experience</h2>
+      <p class="lead">Concise role ownership with technical anchors from day-to-day operations.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>Feb 2021 - Present</strong>
+          <div>
+            <h3>DevOps Engineer - iApps Technologies</h3>
+            <ul class="work-points">
+              <li>Operate and maintain production, staging, and development Linux environments.</li>
+              <li>Create, improve and support CI/CD pipelines and deployment workflows.</li>
+              <li>Automate provisioning and operational tasks.</li>
+              <li>Develop and maintain monitoring, logging, and alerting platforms.</li>
+              <li>Participate in software architecture, infrastructure design, and technical planning for customer and internal systems.</li>
+              <li>Support data platforms, backups, and service reliability across storage and databases.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <strong>Jun 2018 - Feb 2021</strong>
+          <div>
+            <h3>Support Engineer - iApps Technologies</h3>
+            <ul class="work-points">
+              <li>1st/2nd line support across Linux-based production environments.</li>
+              <li>Incident troubleshooting, diagnostics, and maintenance activities.</li>
+              <li>Release support and environment readiness (dev/stage/prod).</li>
+              <li>On-call operations focused on system availability.</li>
+              <li>Client onboarding and configuration of deployed solutions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Current Technical Scope</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>CI/CD</strong>
+          <div>Deployment workflows and automation for development, staging, and production releases.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Containers</strong>
+          <div>Docker and Swarm operations with image lifecycle management; Kubernetes at foundational level.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Observability</strong>
+          <div>Prometheus, Grafana, Loki, ELK, and Zabbix for system monitoring, logging, and alerting.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Data Layer</strong>
+          <div>MySQL/MariaDB replication and MongoDB replica sets/sharding with focus on backups and service reliability.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Infrastructure</strong>
+          <div>Bare metal and Proxmox operations, plus practical exposure to Oracle Cloud, GCP, and AWS.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Contact</h2>
+      <p class="lead">If you want to talk infrastructure, delivery pipelines, or simply swap Linux tips, I am always open to connect.</p>
+      <div class="cta-row">
+        <a class="button primary" href="https://www.linkedin.com/in/chojnacki-miroslaw/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="button secondary" href="mailto:marek.chojnacki.codemarek@gmail.com">Email</a>
+        <a class="button secondary" href="tel:+48515467370">+48 515 467 370</a>
+      </div>
+    </section>
+
+    <p class="footer">CodeMarek Mirosław Chojnacki | NIP: 9542856989 | REGON: 525656955 | Katowice, 2026</p>
+  </main>
+</body>
+</html>
